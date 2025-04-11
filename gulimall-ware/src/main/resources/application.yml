@@ -12,8 +12,13 @@ spring:
 
   application:
     name: gulimall-ware
+
 mybatis-plus:
   mapper-locations: classpath*：/mapper/**/*.xml
   global-config:
     db-config:
       id-type: auto
+
+logging:
+  level:
+    com.atguigu: debug

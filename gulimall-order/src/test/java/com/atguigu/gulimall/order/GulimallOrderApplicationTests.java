@@ -1,10 +1,10 @@
 package com.atguigu.gulimall.order;
 
-import org.junit.jupiter.api.Test;
+import org.junit.Test;
 import org.springframework.boot.test.context.SpringBootTest;
 
 @SpringBootTest
-class GulimallOrderApplicationTests {
+public class GulimallOrderApplicationTests {
 
     @Test
     void contextLoads() {

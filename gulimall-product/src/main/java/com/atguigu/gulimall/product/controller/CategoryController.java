@@ -1,6 +1,7 @@
 package com.atguigu.gulimall.product.controller;
 
 import java.util.Arrays;
+import java.util.List;
 import java.util.Map;
 
 
@@ -31,16 +32,22 @@ public class CategoryController {
     @Autowired
     private CategoryService categoryService;
 
+    @RequestMapping( "/list/tree")
+    public R list()
+    {
+        List<CategoryEntity> entities=categoryService.listWithTree();
+        return R.ok().put("data",entities);
+    }
     /**
      * 列表
-     */
-    @RequestMapping("/list")
-    //@RequiresPermissions("product:category:list")
-    public R list(@RequestParam Map<String, Object> params){
-        PageUtils page = categoryService.queryPage(params);
-
-        return R.ok().put("page", page);
-    }
+//     */
+//    @RequestMapping("/list")
+//    //@RequiresPermissions("product:category:list")
+//    public R list(@RequestParam Map<String, Object> params){
+//        PageUtils page = categoryService.queryPage(params);
+//
+//        return R.ok().put("page", page);
+//    }
 
 
     /**
@@ -65,13 +72,20 @@ public class CategoryController {
         return R.ok();
     }
 
+//    批量修改
+    @RequestMapping("/update/sort")
+    public R updateSort(@RequestBody CategoryEntity[] category)
+    {
+        categoryService.updateBatchById(Arrays.asList(category));
+        return R.ok();
+    }
     /**
      * 修改
      */
     @RequestMapping("/update")
     //@RequiresPermissions("product:category:update")
     public R update(@RequestBody CategoryEntity category){
-		categoryService.updateById(category);
+		categoryService.updateCascade(category);
 
         return R.ok();
     }
@@ -82,7 +96,9 @@ public class CategoryController {
     @RequestMapping("/delete")
     //@RequiresPermissions("product:category:delete")
     public R delete(@RequestBody Long[] catIds){
-		categoryService.removeByIds(Arrays.asList(catIds));
+
+		//categoryService.removeByIds(Arrays.asList(catIds));
+        categoryService.RemoveMenuByIds(Arrays.asList(catIds));
 
         return R.ok();
     }
