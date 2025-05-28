@@ -13,6 +13,12 @@ spring:
   jackson:
     date-format: yyyy-MM-dd HH:mm:ss
 
+  thymeleaf:
+    cache: true
+
+  redis:
+    host: 123.56.91.230
+    port: 6379
 
 
 
@@ -26,3 +32,7 @@ mybatis-plus:
       id-type: auto
       logic-delete-value: 1
       logic-not-delete-value: 0
+
+logging:
+  level:
+    com.atguigu.gulimall: error

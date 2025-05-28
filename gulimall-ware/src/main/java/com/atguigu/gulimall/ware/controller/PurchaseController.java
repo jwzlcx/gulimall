@@ -1,9 +1,11 @@
 package com.atguigu.gulimall.ware.controller;
 
 import java.util.Arrays;
+import java.util.List;
 import java.util.Map;
 
 
+import com.atguigu.gulimall.ware.vo.MergeVo;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestBody;
@@ -41,7 +43,21 @@ public class PurchaseController {
 
         return R.ok().put("page", page);
     }
-
+    //合并采购单
+    @RequestMapping("/merge")
+    public R merge(@RequestBody MergeVo mergeVo){
+        purchaseService.mergePurchase(mergeVo);
+        return R.ok();
+    }
+    //领取采购单
+    @RequestMapping("/recevied")
+    public R recevied(@RequestBody List<Long> ids)
+    {
+        purchaseService.recevied(ids);
+        return R.ok();
+    }
+//TODO：99章完成采购没有做
+    //TODO：AOP用于缓存处理
     /**
      * 列表
      */
